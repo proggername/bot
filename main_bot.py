@@ -2,6 +2,7 @@
 
 import logging
 from asyncio import sleep
+import os
 
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.utils.executor import start_webhook
@@ -17,7 +18,7 @@ WEBHOOK_HOST = 'https://botaiogrampy.herokuapp.com'
 WEBHOOK_PATH = f'/webhook/{API_TOKEN}'
 WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
 WEBAPP_HOST = '0.0.0.0'
-WEBAPP_PORT = 443
+WEBAPP_PORT = int(os.getenv("PORT"))
 
 
 bot = Bot(token=API_TOKEN)
