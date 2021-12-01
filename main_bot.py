@@ -1,6 +1,5 @@
 
 
-
 import logging
 from asyncio import sleep
 
@@ -55,15 +54,6 @@ async def echo(message: types.Message):
         if id_[0] != 0:
             for ii in id_:
                 photo, text = get_vacancy(ii)
-                # if photo != ' ':
-                #     if len(text) > 1024:
-                #         try:
-                #             print(text)
-                #             await message.answer_photo(photo=photo, caption=text[:1024], parse_mode='HTML')
-                #             await message.answer(text[1024:], parse_mode='HTML')
-                #         except Exception:
-                #             continue
-                # else:
                 try:
                     await message.answer(text, parse_mode='HTML', disable_web_page_preview=True)
                     if message.from_user.id == 711910507:
@@ -81,26 +71,30 @@ async def echo(message: types.Message):
 async def on_startup(dp):
     logging.warning(
         'Starting connection. ')
-    await bot.set_webhook(WEBHOOK_URL,drop_pending_updates=True)
+    711910507
+    
+    await bot.set_webhook(WEBHOOK_URL)
+    await bot.send_message(711910507, "Men ishga tushdim")
+
 
 
 async def on_shutdown(dp):
     logging.warning('Bye! Shutting down webhook connection')
-
-
-def main():
-    logging.basicConfig(level=logging.INFO)
-    start_webhook(
-        dispatcher=dp,
-        webhook_path=WEBHOOK_PATH,
-        skip_updates=True,
-        on_startup=on_startup,
-        host=WEBAPP_HOST,
-        port=WEBAPP_PORT,
-    )
+    await bot.send_message(711910507, "Men ishga men ochyapman")
+    await bot.delete_webhook()
+    await dp.storage.close()
+    await dp.storage.wait_closed()
+    logging.warning('Bye!')
 
 
 if __name__ == '__main__':
-    main()
-
+     start_webhook(
+         dispatcher=dp,
+         webhook_path=WEBHOOK_PATH,
+         on_startup=on_startup,
+         on_shutdown=on_shutdown,
+         skip_updates=True,
+         host=WEBAPP_HOST,
+         port=WEBAPP_PORT,
+     )
 
