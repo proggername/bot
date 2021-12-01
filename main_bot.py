@@ -13,7 +13,7 @@ from api_hh import get_id, get_vacancy
 API_TOKEN = '1186351704:AAHirEt4saAqr7pjC5xDyWY3ZxKrEMqkpmA'
 
 logging.basicConfig(level=logging.INFO)
-WEBHOOK_HOST = 'https://botaiogrampy.herokuapp.com/'
+WEBHOOK_HOST = 'https://botaiogrampy.herokuapp.com'
 WEBHOOK_PATH = f'/webhook/{API_TOKEN}'
 WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
 WEBAPP_HOST = 'localhost'
@@ -71,7 +71,7 @@ async def echo(message: types.Message):
 async def on_startup(dp):
     logging.warning(
         'Starting connection. ')
-    711910507
+    
     
     await bot.set_webhook(WEBHOOK_URL)
     await bot.send_message(711910507, "Men ishga tushdim")
