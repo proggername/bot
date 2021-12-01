@@ -1,9 +1,11 @@
 
 
+
 import logging
 from asyncio import sleep
 
 from aiogram import Bot, Dispatcher, executor, types
+from aiogram.utils.executor import start_webhook
 from bs4 import BeautifulSoup
 
 import kurs_dollaruz
@@ -12,6 +14,12 @@ from api_hh import get_id, get_vacancy
 API_TOKEN = '1186351704:AAHirEt4saAqr7pjC5xDyWY3ZxKrEMqkpmA'
 
 logging.basicConfig(level=logging.INFO)
+WEBHOOK_HOST = 'https://botaiogrampy.herokuapp.com/'
+WEBHOOK_PATH = f'/webhook/{API_TOKEN}'
+WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
+WEBAPP_HOST = 'localhost'
+WEBAPP_PORT = 3001
+
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
@@ -70,5 +78,29 @@ async def echo(message: types.Message):
         await message.answer(message.text + ' ' + str(message.chat.id))
 
 
+async def on_startup(dp):
+    logging.warning(
+        'Starting connection. ')
+    await bot.set_webhook(WEBHOOK_URL,drop_pending_updates=True)
+
+
+async def on_shutdown(dp):
+    logging.warning('Bye! Shutting down webhook connection')
+
+
+def main():
+    logging.basicConfig(level=logging.INFO)
+    start_webhook(
+        dispatcher=dp,
+        webhook_path=WEBHOOK_PATH,
+        skip_updates=True,
+        on_startup=on_startup,
+        host=WEBAPP_HOST,
+        port=WEBAPP_PORT,
+    )
+
+
 if __name__ == '__main__':
-    executor.start_polling(dp)
+    main()
+
+
