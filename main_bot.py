@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 import kurs_dollaruz
 from api_hh import get_id, get_vacancy
 
-API_TOKEN = '1186351704:AAHirEt4saAqr7pjC5xDyWY3ZxKrEMqkpmA'
+API_TOKEN = os.getenv("api_bot")
 
 logging.basicConfig(level=logging.INFO)
 WEBHOOK_HOST = 'https://botaiogrampy.herokuapp.com'
@@ -55,10 +55,11 @@ async def echo(message: types.Message):
         if id_[0] != 0:
             for ii in id_:
                 photo, text = get_vacancy(ii)
-                try:
-                    await message.answer(text, parse_mode='HTML', disable_web_page_preview=True)
+                try:                    
                     if message.from_user.id == 711910507:
                         await bot.send_message(-1001442434898, text, disable_web_page_preview=True, parse_mode=types.ParseMode.HTML)
+                    else:
+                        await message.answer(text, parse_mode='HTML', disable_web_page_preview=True)
                 except Exception:
                     continue
                 await sleep(2)
@@ -73,8 +74,10 @@ async def on_startup(dp):
     logging.warning(
         'Starting connection. ')
     
-    
-    await bot.set_webhook(WEBHOOK_URL)
+    try:
+        await bot.set_webhook(WEBHOOK_URL)
+    except Excaption:
+        continue
     await bot.send_message(711910507, "Men ishga tushdim")
 
 
@@ -82,7 +85,7 @@ async def on_startup(dp):
 async def on_shutdown(dp):
     logging.warning('Bye! Shutting down webhook connection')
     await bot.send_message(711910507, "Men ishga men ochyapman")
-    await bot.delete_webhook()
+    #await bot.delete_webhook()
     await dp.storage.close()
     await dp.storage.wait_closed()
     logging.warning('Bye!')
