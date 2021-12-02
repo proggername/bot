@@ -18,11 +18,11 @@ def get_malumot():
 
                 tex = td.text
                 if i == 0:
-                    strr = ban[0]+td.text+' :'
+                    strr = '<b>'+ban[0]+td.text+'</b> :'
                 else:
-                    strr = strr+' ' + ban[i] + td.text
-            print(strr[strr.find(ban[1])+1:strr.find(ban[2])-1])
-            if strr[strr.find(ban[1])+1:strr.find(ban[2])-1].isalnum():
+                    strr = strr+'   ' + ban[i] +td.text
+            print(strr[strr.find(ban[1])+1:strr.find(ban[2])-3])
+            if strr[strr.find(ban[1])+1:strr.find(ban[2])-3].isdigit():
                 result = result + '\n' +strr.removeprefix('\n')
         return result
 
