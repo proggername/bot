@@ -129,7 +129,7 @@ def get_id(vacant_name='Java'):
     results = requests.get(url=url, params=params)
 
     objJson = json.loads(results.content.decode())
-    print(objJson)
+    
     array_of_id = []
     if len(objJson['items']) > 0:
         for item in objJson['items']:
@@ -138,10 +138,3 @@ def get_id(vacant_name='Java'):
     else:
         array_of_id = [0]
     return array_of_id
-
-
-if __name__ == '__main__':
-    a = get_id()
-    for a in a:
-        a, b = get_vacancy(a)
-        print(b)
