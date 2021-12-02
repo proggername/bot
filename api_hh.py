@@ -93,7 +93,8 @@ def get_vacancy(vacancy_id: int):
     if oktl != ' ':
         result_text = result_text + f'\n<a href=\'{oktl}\'>Prosmotr</a>'
     photo_url = employer_photo_url
-    return photo_url, result_text
+
+    return result_text
 
 
 # Дата и время на компьютере
