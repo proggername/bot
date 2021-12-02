@@ -76,7 +76,7 @@ async def on_startup(dp):
     
     try:
         await bot.set_webhook(WEBHOOK_URL)
-    except Excaption e:
+    except Exception e:
         print(e)
     await bot.send_message(711910507, "Men ishga tushdim")
 
