@@ -76,8 +76,8 @@ async def on_startup(dp):
     
     try:
         await bot.set_webhook(WEBHOOK_URL)
-    except Exception e:
-        print(e)
+    except Exception:
+        print('XAto boldi bu ish bolmadi')
     await bot.send_message(711910507, "Men ishga tushdim")
 
 
