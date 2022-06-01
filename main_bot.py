@@ -49,11 +49,14 @@ async def echo(message: types.Message):
             msg = str(msg[7:])  # vacantdan keyingi sozlarni hammasi
             msg = msg.split()  # vacandan keyingi sozlarni alohida qilib massivga aylantiramiz
             for i in msg:
+                print(i)
                 id_1 = get_id(i)  # id larni yigamiz
                 for index in id_1:
+                    print(index)
                     id_.append(index)
 
         if id_[0] != 0:
+            print(str(id_))
             for ii in id_:
                 await sleep(2)
                 text = get_vacancy(ii)
