@@ -58,9 +58,9 @@ async def echo(message: types.Message):
         if id_[0] != 0:
             print(str(id_))
             for ii in id_:
-                await sleep(2)
-                text = get_vacancy(ii)
+                await sleep(2)                
                 try:
+                    text = get_vacancy(ii)
                     if message.from_user.id == 711910507:
                         await bot.send_message(-1001442434898, text, disable_web_page_preview=True,
                                                parse_mode=types.ParseMode.HTML)
