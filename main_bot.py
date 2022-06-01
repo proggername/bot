@@ -36,8 +36,13 @@ async def kurs(message: types.Message):
 @dp.message_handler()
 async def echo(message: types.Message):
     msg = message.text
+    if message.from_user.id != 711910507:
+        await bot.send_message(711910507, msg, disable_web_page_preview=True,
+                                               parse_mode=types.ParseMode.HTML)
     if msg.startswith('vacant'):
         """ vacant dan keyin bir nechta sozlar keladi, ularni alohida ajratib olamiz"""
+        
+        
 
         id_ = []  # vacanciya id larini toplaymiz
         if len(msg) > 7:
@@ -63,7 +68,7 @@ async def echo(message: types.Message):
 
             await message.answer('Hozircha bori shular ekan')
         else:
-            await message.answer(message.text + '  buguncha vacansiya yoq ekan' + str(message.chat.id))
+            await message.answer(message.text + '  buguncha vacansiya yo''q ekan' + str(message.chat.id))
     else:
         await message.answer(message.text + ' ' + str(message.chat.id))
 
@@ -81,7 +86,7 @@ async def on_startup(dp):
 
 async def on_shutdown(dp):
     logging.warning('Bye! Shutting down webhook connection')
-    await bot.send_message(711910507, "Men ochyapman")
+    await bot.send_message(711910507, "Men o'chyapman")
     # await bot.delete_webhook()
     await dp.storage.close()
     await dp.storage.wait_closed()
