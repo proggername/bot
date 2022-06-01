@@ -67,7 +67,8 @@ async def echo(message: types.Message):
                     else:
                         await message.answer(text, parse_mode='HTML', disable_web_page_preview=True)
                 except Exception:
-                    continue
+                    await bot.send_message(711910507, Exception, disable_web_page_preview=True,
+                                               parse_mode=types.ParseMode.HTML)
 
             await message.answer('Hozircha bori shular ekan')
         else:
