@@ -2,9 +2,10 @@ import logging
 from asyncio import sleep
 import os
 
+
 from aiogram import Bot, Dispatcher, types
 from aiogram.utils.executor import start_webhook
-
+from aiogram.types import URLInputFile
 
 import kurs_dollaruz
 from api_hh import get_id, get_vacancy
