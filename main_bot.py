@@ -5,7 +5,7 @@ import os
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.utils.executor import start_webhook
-from aiogram.types import URLInputFile
+
 
 import kurs_dollaruz
 from api_hh import get_id, get_vacancy
@@ -42,7 +42,7 @@ async def echo(message: types.Message):
                                                parse_mode=types.ParseMode.HTML)
     if msg.startswith('url'):
         msg = msg[4:]
-        image = URLInputFile(
+        image = types.URLInputFile(
             msg,
             filename=f"video {msg[-10:]}"
         )
