@@ -2,7 +2,7 @@ import logging
 from asyncio import sleep
 import os
 
-
+from aiogram.types import URLInputFile
 from aiogram import Bot, Dispatcher, types
 from aiogram.utils.executor import start_webhook
 
@@ -42,7 +42,7 @@ async def echo(message: types.Message):
                                                parse_mode=types.ParseMode.HTML)
     if msg.startswith('url'):
         msg = msg[4:]
-        image = types.URLInputFile(
+        image = URLInputFile(
             msg,
             filename=f"video {msg[-10:]}"
         )
