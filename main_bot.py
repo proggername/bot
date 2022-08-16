@@ -41,7 +41,7 @@ async def echo(message: types.Message):
         await bot.send_message(711910507, msg, disable_web_page_preview=True,
                                                parse_mode=types.ParseMode.HTML)
     if msg.startswith('http'):
-        msg = msg.split('\n')
+        msg = msg.splitlines()
         for i in msg:                
             image = types.InputFile.from_url(1)
             await bot.send_video(message.chat.id, image )
