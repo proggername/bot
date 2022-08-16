@@ -39,6 +39,13 @@ async def echo(message: types.Message):
     if message.from_user.id != 711910507:
         await bot.send_message(711910507, msg, disable_web_page_preview=True,
                                                parse_mode=types.ParseMode.HTML)
+    if msg.startswith('url'):
+        msg = msg[4:]
+        image = URLInputFile(
+            msg,
+            filename=f"video {msg[-10:]}"
+        )
+        await bot.send_video(message.chat.id, image )
     if msg.startswith('vacant'):
         """ vacant dan keyin bir nechta sozlar keladi, ularni alohida ajratib olamiz"""
         
