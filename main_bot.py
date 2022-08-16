@@ -44,8 +44,8 @@ async def echo(message: types.Message):
         msg = msg.splitlines()
         for i in msg:                
             image = types.InputFile.from_url(i)
-            await bot.send_document(message.chat.id, image )
-            await sleep(5)  
+            await bot.send_document(message.chat.id, image )              
+            msg.remove(i)
     elif msg.startswith('vacant'):
         """ vacant dan keyin bir nechta sozlar keladi, ularni alohida ajratib olamiz"""
         
