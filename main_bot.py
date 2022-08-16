@@ -69,11 +69,7 @@ async def echo(message: types.Message):
                 try:
                     text = get_vacancy(ii)
                     print(text)
-                    if message.from_user.id == 711910507:
-                        await bot.send_message(-1001442434898, text, disable_web_page_preview=True,
-                                               parse_mode=types.ParseMode.HTML)
-                    else:
-                        await message.answer(text, parse_mode='HTML', disable_web_page_preview=True)
+                    await message.answer(text, parse_mode='HTML', disable_web_page_preview=True)
                 except Exception:
                     await bot.send_message(711910507, Exception, disable_web_page_preview=True,
                                                parse_mode=types.ParseMode.HTML)
