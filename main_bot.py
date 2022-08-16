@@ -54,7 +54,7 @@ async def echo(message: types.Message):
         id_ = []  # vacanciya id larini toplaymiz
         if len(msg) > 7:
             msg = str(msg[7:])  # vacantdan keyingi sozlarni hammasi
-            msg = msg.split()  # vacandan keyingi sozlarni alohida qilib massivga aylantiramiz
+            msg = msg.split(',')  # vacandan keyingi sozlarni alohida qilib massivga aylantiramiz
             for i in msg:
                 print(i)
                 id_1 = get_id(i)  # id larni yigamiz
@@ -76,6 +76,7 @@ async def echo(message: types.Message):
                 except Exception:
                     await bot.send_message(711910507, Exception, disable_web_page_preview=True,
                                                parse_mode=types.ParseMode.HTML)
+                id_.remove(ii)
 
             await message.answer('Hozircha bori shular ekan')
         else:
